@@ -1,3 +1,4 @@
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -15,11 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('charsheet', require('./components/charsheet.vue'));
-Vue.component('f-input', require('./components/input.vue'));
-Vue.component('f-select', require('./components/select.vue'));
-Vue.component('f-checkbox', require('./components/checkbox.vue'));
-Vue.component('spell', require('./components/spell.vue'));
+
 const app = new Vue({
     el: '#app'
 });
