@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CharClass;
 use App\Models\School;
 use App\Models\Spell;
+use function compact;
 use Illuminate\Http\Request;
 
 class SpellController extends Controller
@@ -105,7 +107,7 @@ class SpellController extends Controller
         $spell->description = request('description');
         $spell->save();
 
-        return redirect('/spells/create');
+        return redirect('/spells/overview');
     }
 
     public function relation($rank)
@@ -152,5 +154,43 @@ class SpellController extends Controller
         $schools = School::all()->toArray();
 
         return view('spells.list', ['spells' => $spells, 'schools' => $schools]);
+    }
+
+    public function overview() {
+        $schoolsSelected = request('schools');
+        $charClassesSelected = request('classes');
+        $ranksSelected = request('ranks');
+        $demoSpell = Spell::first();
+        $query = Spell::query();
+        if(count($schoolsSelected)) {
+            $query->whereIn('school_id', $schoolsSelected);
+        }
+        if(count($ranksSelected)) {
+            $query->whereIn('rank', $ranksSelected);
+        }
+        if(count($charClassesSelected)) {
+            $query->where(function($query) use ($charClassesSelected, $demoSpell) {
+                $invalid = true;
+                foreach($charClassesSelected as $charClass) {
+                    $column = 'list_' . $charClass;
+                    if(isset($demoSpell->$column)) {
+                        $invalid = false;
+                        $query->orWhere($column, 1);
+                    }
+                }
+                if($invalid) {
+                    $query->whereRaw('1 = 0');
+                }
+            });
+        }
+        $spells = $query->orderBy('name')->pluck('name', 'id');
+        $ranks = [0 => 'Zaubertricks'];
+        for($i = 1; $i < 10; $i++) {
+            $ranks[$i] = $i. '. Grad';
+        }
+
+        $charClasses = CharClass::all();
+        $schools = School::all();
+        return view('spells.overview', compact('spells', 'schools', 'ranks', 'charClasses'));
     }
 }

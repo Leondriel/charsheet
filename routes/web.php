@@ -28,5 +28,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::any('/spells/overview', 'SpellController@overview')->name('spells.overview');
 Route::resource('spells', 'SpellController');
 Route::get('/spells/list/{class}', 'SpellController@list');
+
