@@ -23,7 +23,7 @@ class CreateSpellsTable extends Migration
             $table->boolean('component_voice')->nullable();
             $table->boolean('component_gesture')->nullable();
             $table->boolean('component_material')->nullable();
-            $table->string('material', 255)->nullable();
+            $table->text('material')->nullable();
             $table->string('duration', 100)->nullable();
             $table->boolean('list_bard')->nullable();
             $table->boolean('list_cleric')->nullable();
