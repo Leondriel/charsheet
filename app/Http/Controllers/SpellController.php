@@ -79,20 +79,19 @@ class SpellController extends Controller
     public function edit(Spell $spell)
     {
         $schools = School::all()->pluck('name', 'id')->toArray();
-
         return view('spells.edit', ['schools' => $schools, 'spell' => $spell]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Spell $spell
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Spell $spell)
+    public function update($spell)
     {
+        $spell = Spell::find($spell);
         $spell->name = request('name');
         $spell->school_id = request('school_id');
         $spell->rank = request('rank');
