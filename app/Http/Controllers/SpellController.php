@@ -157,9 +157,9 @@ class SpellController extends Controller
     }
 
     public function overview() {
-        $schoolsSelected = request('schools');
-        $charClassesSelected = request('classes');
-        $ranksSelected = request('ranks');
+        $schoolsSelected = request('schools', []);
+        $charClassesSelected = request('classes', []);
+        $ranksSelected = request('ranks', []);
         $demoSpell = Spell::first();
         $query = Spell::query();
         if(count($schoolsSelected)) {
