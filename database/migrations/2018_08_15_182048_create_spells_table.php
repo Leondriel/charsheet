@@ -16,7 +16,7 @@ class CreateSpellsTable extends Migration
         Schema::create('spells', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100)->nullable()->unique();
-            $table->integer('school_id')->nullable();
+            $table->integer('school_id')->unsigned();
             $table->tinyInteger('rank')->nullable();
             $table->string('cast_duration', 255)->nullable();
             $table->string('range', 100)->nullable();
