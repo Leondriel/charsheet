@@ -32,3 +32,7 @@ Route::any('/spells/overview', 'SpellController@overview')->name('spells.overvie
 Route::resource('spells', 'SpellController');
 Route::get('/spells/list/{class}', 'SpellController@list');
 
+Route::any('/gems/overview', 'GemController@overview')->name('gems.overview');
+Route::resource('gems', 'GemController');
+Route::get('/gems/list/{class}', 'GemController@list');
+
