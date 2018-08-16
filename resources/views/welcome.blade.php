@@ -81,8 +81,6 @@
             <div class="title m-b-md">
                 D&D5 Charakter Manager
             </div>
-
-
         </div>
     </div>
 </body>
