@@ -81,6 +81,7 @@ class SpellController extends Controller
     public function edit(Spell $spell)
     {
         $schools = School::all()->pluck('name', 'id')->toArray();
+
         return view('spells.edit', ['schools' => $schools, 'spell' => $spell]);
     }
 
@@ -148,6 +149,19 @@ class SpellController extends Controller
         //
     }
 
+    public function checkName($name, $id = null)
+    {
+        $query = Spell::query()->where('name', $name);
+        if ($id) {
+            $query->where('id', '!=', $id);
+        }
+        $spell = $query->first();
+
+        return response()->json([
+            'result' => (bool)$spell,
+        ]);
+    }
+
     public function list($class)
     {
         $spells = Spell::where('list_' . $class, 1)->orderBy('rank')->orderBy('name')->get();
@@ -156,41 +170,43 @@ class SpellController extends Controller
         return view('spells.list', ['spells' => $spells, 'schools' => $schools]);
     }
 
-    public function overview() {
+    public function overview()
+    {
         $schoolsSelected = request('schools', []);
         $charClassesSelected = request('classes', []);
         $ranksSelected = request('ranks', []);
         $demoSpell = Spell::first();
         $query = Spell::query();
-        if(count($schoolsSelected)) {
+        if (count($schoolsSelected)) {
             $query->whereIn('school_id', $schoolsSelected);
         }
-        if(count($ranksSelected)) {
+        if (count($ranksSelected)) {
             $query->whereIn('rank', $ranksSelected);
         }
-        if(count($charClassesSelected)) {
-            $query->where(function($query) use ($charClassesSelected, $demoSpell) {
+        if (count($charClassesSelected)) {
+            $query->where(function ($query) use ($charClassesSelected, $demoSpell) {
                 $invalid = true;
-                foreach($charClassesSelected as $charClass) {
+                foreach ($charClassesSelected as $charClass) {
                     $column = 'list_' . $charClass;
-                    if(isset($demoSpell->$column)) {
+                    if (isset($demoSpell->$column)) {
                         $invalid = false;
                         $query->orWhere($column, 1);
                     }
                 }
-                if($invalid) {
+                if ($invalid) {
                     $query->whereRaw('1 = 0');
                 }
             });
         }
         $spells = $query->orderBy('name')->pluck('name', 'id');
         $ranks = [0 => 'Zaubertricks'];
-        for($i = 1; $i < 10; $i++) {
-            $ranks[$i] = $i. '. Grad';
+        for ($i = 1; $i < 10; $i++) {
+            $ranks[$i] = $i . '. Grad';
         }
 
         $charClasses = CharClass::all();
         $schools = School::all();
+
         return view('spells.overview', compact('spells', 'schools', 'ranks', 'charClasses'));
     }
 }

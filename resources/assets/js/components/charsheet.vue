@@ -7,37 +7,37 @@
                     <small class="form-text text-muted">Spieler</small>
                 </div>
                 <div class="col-2">
-                    <f-select :options="classes" v-model="c.char_class_id" description="Klasse" name="class"></f-select>
+                    <form-select :options="classes" v-model="c.char_class_id" description="Klasse" name="class"></form-select>
                 </div>
                 <div class="col-1">
-                    <f-select :options="levels"
+                    <form-select :options="levels"
                               v-model="c.level"
                               @input="updateLevel($event)"
                               description="Stufe"
-                              name="level"></f-select>
+                              name="level"></form-select>
                 </div>
                 <div class="col-3">
-                    <f-input v-model="c.background" description="Hintergrund" name="background"></f-input>
+                    <form-input v-model="c.background" description="Hintergrund" name="background"></form-input>
                 </div>
                 <div class="col-3">
-                    <f-input v-model="c.deity" description="Gottheit" name="deity"></f-input>
+                    <form-input v-model="c.deity" description="Gottheit" name="deity"></form-input>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-3">
-                    <f-input v-model="c.name" description="Charaktername" name="name"></f-input>
+                    <form-input v-model="c.name" description="Charaktername" name="name"></form-input>
                 </div>
                 <div class="col-3">
-                    <f-select :options="races" v-model="c.race_id" description="Rasse" name="race"></f-select>
+                    <form-select :options="races" v-model="c.race_id" description="Rasse" name="race"></form-select>
                 </div>
                 <div class="col-3">
-                    <f-select :options="alignments"
+                    <form-select :options="alignments"
                               v-model="c.alignment_id"
                               description="Gesinnung"
-                              name="alignment"></f-select>
+                              name="alignment"></form-select>
                 </div>
                 <div class="col-3">
-                    <f-input v-model="c.experience" description="Erfahrung" name="experience"></f-input>
+                    <form-input v-model="c.experience" description="Erfahrung" name="experience"></form-input>
                 </div>
             </div>
             <ul class="nav nav-tabs" id="char-tabs" role="tablist">
@@ -81,14 +81,14 @@
                                     </div>
                                 </div>
                                 <div class="bg-white p-2 mr-2 rounded border">
-                                    <f-input v-model="c.armor_class"
+                                    <form-input v-model="c.armor_class"
                                              description="Rüstungsklasse"
-                                             name="armor-class"></f-input>
+                                             name="armor-class"></form-input>
                                 </div>
                                 <div class="bg-white p-2 mr-2 rounded border">
-                                    <f-input v-model="c.movement"
+                                    <form-input v-model="c.movement"
                                              description="Bewegungsrate (m)"
-                                             name="movement"></f-input>
+                                             name="movement"></form-input>
                                 </div>
                                 <div class="bg-white p-2 mr-2 rounded border">
                                     <div class="form-check">
@@ -174,20 +174,20 @@
                                 <tr>
                                     <td>Rettungswurf</td>
                                     <td v-for="attribute in attributes" :key="attribute">
-                                        <f-checkbox @input="updateSave(attribute, $event)"
+                                        <form-checkbox @input="updateSave(attribute, $event)"
                                                     :attribute="saves[attribute]"
-                                                    description=""></f-checkbox>
+                                                    description=""></form-checkbox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Fertigkeiten</td>
                                     <td v-for="attribute in attributes" :key="attribute">
 
-                                        <f-checkbox v-for="skill in skills[attribute]"
+                                        <form-checkbox v-for="skill in skills[attribute]"
                                                     :key="skill"
                                                     @input="updateSkill(skill, $event)"
                                                     :attribute="skillBonus[skill]"
-                                                    :description="skillLabels[skill]"></f-checkbox>
+                                                    :description="skillLabels[skill]"></form-checkbox>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -197,22 +197,22 @@
                         <div class="" :style="switchTab(2)">
                             <div class="form-row d-form m-1 bg-white rounded border pt-2">
                                 <div class="col-2">
-                                    <f-input v-model="c.age" description="Alter" name="age"></f-input>
+                                    <form-input v-model="c.age" description="Alter" name="age"></form-input>
                                 </div>
                                 <div class="col-2">
-                                    <f-input v-model="c.height" description="Größe" name="height"></f-input>
+                                    <form-input v-model="c.height" description="Größe" name="height"></form-input>
                                 </div>
                                 <div class="col-2">
-                                    <f-input v-model="c.weight" description="Gewicht" name="weight"></f-input>
+                                    <form-input v-model="c.weight" description="Gewicht" name="weight"></form-input>
                                 </div>
                                 <div class="col-2">
-                                    <f-input v-model="c.eye_color" description="Augenfarbe" name="eye-color"></f-input>
+                                    <form-input v-model="c.eye_color" description="Augenfarbe" name="eye-color"></form-input>
                                 </div>
                                 <div class="col-2">
-                                    <f-input v-model="c.skin_color" description="Hautfarbe" name="skin-color"></f-input>
+                                    <form-input v-model="c.skin_color" description="Hautfarbe" name="skin-color"></form-input>
                                 </div>
                                 <div class="col-2">
-                                    <f-input v-model="c.hair_color" description="Haarfarbe" name="hair-color"></f-input>
+                                    <form-input v-model="c.hair_color" description="Haarfarbe" name="hair-color"></form-input>
                                 </div>
                             </div>
                             <div class="form-row mb-1">
@@ -220,36 +220,36 @@
                                     <div class="card">
                                         <div class="card-header bg-white">Persönlichkeit</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.personality"></textarea></div>
+                                                      v-model="c.personality"></form-textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="card">
                                         <div class="card-header bg-white">Ideale</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.ideal"></textarea></div>
+                                                      v-model="c.ideal"></form-textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="card">
                                         <div class="card-header bg-white">Bindungen</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.connection"></textarea></div>
+                                                      v-model="c.connection"></form-textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="card">
                                         <div class="card-header bg-white">Makel</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.weakness"></textarea></div>
+                                                      v-model="c.weakness"></form-textarea></div>
                                     </div>
                                 </div>
                             </div>
@@ -258,18 +258,18 @@
                                     <div class="card">
                                         <div class="card-header bg-white">Aussehen</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.appearance"></textarea></div>
+                                                      v-model="c.appearance"></form-textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="card">
                                         <div class="card-header bg-white">Verbündete & Organisationen</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="height:200px;width:100%"
-                                                      v-model="c.allies"></textarea></div>
+                                                      v-model="c.allies"></form-textarea></div>
                                     </div>
                                 </div>
                             </div>
@@ -278,16 +278,16 @@
                                     <div class="card">
                                         <div class="card-header bg-white">Berufe und Sprachen</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
-                                                      style="height:200px;" v-model="c.languages"></textarea></div>
+                                            <form-textarea class="rounded form-control"
+                                                      style="height:200px;" v-model="c.languages"></form-textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="card">
                                         <div class="card-header bg-white">Hintergrundgeschichte</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
-                                                      style="height:200px;" v-model="c.background_story"></textarea>
+                                            <form-textarea class="rounded form-control"
+                                                      style="height:200px;" v-model="c.background_story"></form-textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -304,9 +304,9 @@
                                     </div>
                                 </div>
                                 <div class="bg-white p-2 mr-2 rounded border">
-                                    <f-input v-model="c.armor_class"
+                                    <form-input v-model="c.armor_class"
                                              description="Rüstungsklasse"
-                                             name="armor-class2"></f-input>
+                                             name="armor-class2"></form-input>
                                 </div>
                                 <div class="bg-white p-2 mr-2 rounded border">
                                     <div class="input-group" style="width:150px;">
@@ -379,9 +379,9 @@
                                     <div class="card mt-2">
                                         <div class="card-header bg-white">Inventar</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
+                                            <form-textarea class="rounded form-control"
                                                       style="min-height:600px"
-                                                      v-model="c.inventory"></textarea>
+                                                      v-model="c.inventory"></form-textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -389,8 +389,8 @@
                                     <div class="card">
                                         <div class="card-header bg-white">Merkmale</div>
                                         <div class="card-body">
-                                            <textarea class="rounded form-control"
-                                                      style="min-height:800px;" v-model="c.feats"></textarea>
+                                            <form-textarea class="rounded form-control"
+                                                      style="min-height:800px;" v-model="c.feats"></form-textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -410,8 +410,8 @@
                             <div v-if="c.spells" class="d-flex flex-row flex-wrap">
                                 <div class="card m-1" style="width: 400px;">
                                     <div class="card-header bg-white">Zaubertricks</div>
-                                    <div class="card-body"><textarea style="width:100%; height: 400px;"
-                                                                     v-model="c.spells[0].text"></textarea></div>
+                                    <div class="card-body"><form-textarea style="width:100%; height: 400px;"
+                                                                     v-model="c.spells[0].text"></form-textarea></div>
                                 </div>
 
                                 <div v-for="(spell,i) in c.spells"
@@ -425,8 +425,8 @@
                                                                                            v-model="c.spells[i].slots">
                                         Slots
                                     </div>
-                                    <div class="card-body"><textarea style="width:100%; height: 400px;"
-                                                                     v-model="c.spells[i].text"></textarea></div>
+                                    <div class="card-body"><form-textarea style="width:100%; height: 400px;"
+                                                                     v-model="c.spells[i].text"></form-textarea></div>
 
                                 </div>
                             </div>

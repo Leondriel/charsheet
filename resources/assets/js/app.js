@@ -15,7 +15,15 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('charsheet', require('./components/charsheet.vue'));
+Vue.component('form-checkbox', require('./components/form/checkbox.vue'));
+Vue.component('draft', require('./components/draft.vue'));
+Vue.component('form-input', require('./components/form/input.vue'));
+Vue.component('form-select', require('./components/form/select.vue'));
+Vue.component('form-textarea', require('./components/form/textarea.vue'));
+Vue.component('spell', require('./components/spell.vue'));
+Vue.component('spells', require('./components/spells.vue'));
+Vue.component('spell-name', require('./components/spells/name.vue'));
 
 const app = new Vue({
     el: '#app'

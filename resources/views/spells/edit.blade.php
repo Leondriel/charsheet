@@ -11,12 +11,7 @@
                 <div class="form-group row">
                     <label for="spellName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text"
-                               class="form-control"
-                               id="spellName"
-                               placeholder="Name"
-                               name="name"
-                               value="{{ $spell->name }}">
+                        <spell-name value="{{ $spell->name }}" spell-id="{{ $spell->id }}" ></spell-name>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -119,7 +114,10 @@
                 <div class="form-group row">
                     <label for="spellDescription" class="col-sm-2 col-form-label">Beschreibung</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="description" id="spellDescription" rows="10">{{ $spell->description }}</textarea>
+                        <textarea class="form-control"
+                                  name="description"
+                                  id="spellDescription"
+                                  rows="10">{{ $spell->description }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -133,5 +131,4 @@
             </form>
         </div>
     </div>
-
 @endsection
